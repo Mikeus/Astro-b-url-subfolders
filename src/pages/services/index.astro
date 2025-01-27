@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/MainLayout.astro';
+
+const services = [
+  {
+    title: 'Residential Cleaning',
+    description: 'Comprehensive home cleaning tailored to your needs',
+    details: [
+      'Regular weekly or bi-weekly cleaning',
+      'Move-in/move-out deep cleaning',
+      'Customizable cleaning packages'
+    ]
+  },
+  {
+    title: 'Deep Cleaning',
+    description: 'Thorough, detailed cleaning for every corner of your home',
+    details: [
+      'Baseboards and trim cleaning',
+      'Inside of appliances',
+      'Hard-to-reach areas'
+    ]
+  }
+];
+---
+
+<Layout title="Our Cleaning Services | Ever Clean House">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center mb-8 text-brand-blue">
+      Our Professional Cleaning Services
+    </h1>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {services.map(service => (
+        <div class="service-detail bg-white shadow-md rounded-lg p-6">
+          <h2 class="text-2xl font-bold mb-4 text-brand-green">{service.title}</h2>
+          <p class="mb-4 text-gray-600">{service.description}</p>
+          <ul class="list-disc list-inside">
+            {service.details.map(detail => (
+              <li>{detail}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>

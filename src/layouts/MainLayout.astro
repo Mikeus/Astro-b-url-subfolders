@@ -1,0 +1,90 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content="Professional house cleaning services in Raleigh, NC" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <nav class="bg-brand-blue text-white py-4">
+      <div class="container mx-auto flex justify-between items-center px-4">
+        <a href="/" class="text-2xl font-bold">Ever Clean House</a>
+        <div x-data="{ open: false }" class="md:flex items-center">
+          <button 
+            @click="open = !open" 
+            class="md:hidden text-white focus:outline-none"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          
+          <ul 
+            x-show="open || window.innerWidth >= 768" 
+            x-transition 
+            class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4"
+          >
+            <li><a href="/services" class="block py-2 md:py-0 hover:text-brand-green">Services</a></li>
+            <li><a href="/cities" class="block py-2 md:py-0 hover:text-brand-green">Cities</a></li>
+            <li><a href="/blog" class="block py-2 md:py-0 hover:text-brand-green">Blog</a></li>
+            <li>
+              <a 
+                href="/contact" 
+                class="block bg-brand-green px-4 py-2 rounded hover:bg-green-700 transition"
+              >
+                Book Now
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer class="bg-brand-blue text-white py-8">
+      <div class="container mx-auto text-center px-4">
+        <p>&copy; 2023 Ever Clean House. All Rights Reserved.</p>
+        <div class="mt-4">
+          <a href="/privacy" class="mx-2 hover:text-brand-green">Privacy Policy</a>
+          <a href="/terms" class="mx-2 hover:text-brand-green">Terms of Service</a>
+        </div>
+        <div class="mt-4 flex justify-center space-x-4">
+          <a href="tel:+19195551234" class="hover:text-brand-green">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 22.621l-3.521-6.152c-.465.297-1.02.492-1.479.492-1.421 0-2.513-1.042-2.513-2.461v-6.617h-2v6.617c0 1.42-1.093 2.461-2.514 2.461-.459 0-1.014-.195-1.479-.492l-3.494 6.152c.257.096.547.179.834.179h16.331c.287 0 .577-.083.834-.179z"/>
+            </svg>
+          </a>
+          <a href="mailto:contact@evercleanhouse.com" class="hover:text-brand-green">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.425 1.148l-4 3.241-4-3.241-8.576 9.311h25.152l-8.576-9.311z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Ensure mobile menu works correctly on resize
+      window.addEventListener('resize', () => {
+        const mobileMenu = document.querySelector('ul[x-show]');
+        if (window.innerWidth >= 768) {
+          mobileMenu.style.display = 'flex';
+        } else {
+          mobileMenu.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

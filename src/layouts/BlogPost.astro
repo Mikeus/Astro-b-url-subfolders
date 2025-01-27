@@ -1,0 +1,41 @@
+---
+import MainLayout from './MainLayout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<MainLayout title={frontmatter.title}>
+  <article class="container mx-auto px-4 py-8">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4 text-brand-blue">
+        {frontmatter.title}
+      </h1>
+      
+      <div class="mb-8 text-gray-600">
+        <time datetime={frontmatter.pubDate.toISOString()}>
+          {new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </time>
+        <span class="mx-2">•</span>
+        <span>{frontmatter.author}</span>
+      </div>
+
+      {frontmatter.tags && frontmatter.tags.length > 0 && (
+        <div class="mb-8 flex flex-wrap gap-2">
+          {frontmatter.tags.map((tag: string) => (
+            <span class="bg-brand-gray px-3 py-1 rounded-full text-sm">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <div class="prose lg:prose-xl max-w-none">
+        <slot />
+      </div>
+    </div>
+  </article>
+</MainLayout>

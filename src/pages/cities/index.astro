@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/MainLayout.astro';
+
+const cities = [
+  'Raleigh', 'Cary', 'Durham', 'Chapel Hill', 
+  'Apex', 'Holly Springs', 'Garner'
+];
+---
+
+<Layout title="Cities We Serve | Ever Clean House">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center mb-8 text-brand-blue">
+      Cleaning Services in Triangle Area Cities
+    </h1>
+    
+    <div class="grid md:grid-cols-3 gap-6">
+      {cities.map(city => (
+        <div class="city-card bg-white shadow-md rounded-lg p-6 text-center">
+          <h2 class="text-2xl font-bold mb-4 text-brand-green">{city}</h2>
+          <p class="mb-4 text-gray-600">
+            Professional cleaning services tailored for {city} residents
+          </p>
+          <a 
+            href={`/cities/${city.toLowerCase().replace(' ', '-')}`} 
+            class="inline-block bg-brand-green text-white px-4 py-2 rounded hover:bg-green-700 transition"
+          >
+            Explore {city} Services
+          </a>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>

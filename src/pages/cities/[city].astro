@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/MainLayout.astro';
+
+export function getStaticPaths() {
+  const cities = [
+    'Raleigh', 'Cary', 'Durham', 'Chapel Hill', 
+    'Apex', 'Holly Springs', 'Garner'
+  ];
+
+  return cities.map(city => ({
+    params: { city: city.toLowerCase().replace(' ', '-') },
+    props: { city }
+  }));
+}
+
+const { city } = Astro.props;
+---
+
+<Layout title={`${city} Cleaning Services | Ever Clean House`}>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center mb-8 text-brand-blue">
+      Professional Cleaning Services in {city}
+    </h1>
+    
+    <div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-8">
+      <h2 class="text-2xl font-bold mb-4 text-brand-green">
+        Local Cleaning Experts
+      </h2>
+      <p class="mb-4 text-gray-600">
+        Ever Clean House provides top-quality cleaning services specifically 
+        tailored for {city} residents. Our local team understands the unique 
+        cleaning needs of homes in the {city} area.
+      </p>
+      
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="font-bold text-brand-blue mb-2">Residential Cleaning</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>Weekly cleaning</li>
+            <li>Bi-weekly maintenance</li>
+            <li>Move-in/move-out services</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-brand-blue mb-2">Deep Cleaning</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>Detailed home cleaning</li>
+            <li>Comprehensive surface treatment</li>
+            <li>Hard-to-reach areas</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-6 text-center">
+        <a 
+          href="/contact" 
+          class="inline-block bg-brand-green text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
+        >
+          Book {city} Cleaning Service
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

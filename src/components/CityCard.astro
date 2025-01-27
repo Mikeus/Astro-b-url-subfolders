@@ -1,0 +1,14 @@
+---
+interface Props {
+  city: string;
+}
+
+const { city } = Astro.props;
+---
+
+<div class="city-card bg-brand-gray p-4 rounded-lg text-center hover:bg-brand-green hover:text-white transition-all">
+  <h3 class="text-xl font-semibold">{city} Cleaning Services</h3>
+  <a href={`/cities/${city.toLowerCase().replace(' ', '-')}`} class="mt-2 inline-block">
+    Learn More
+  </a>
+</div>
